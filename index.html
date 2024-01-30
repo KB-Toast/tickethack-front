@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tickethack</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1 class="title">Tickethack</h1>
+        <!--<a href="lien pour rediriger" class="title-link">Tickethack</a>!-->
+        <div id="cart">
+          <a href="lien pour rediriger" class="cart-link">Cart</a>
+        </div>
+        <div id="bookings">
+          <a href="lien pour rediriger" class="bookings-link">Bookings</a>
+        </div>
+      </div>
+
+      <div id="back">
+        <h1 class="bigwhite">Explore the world effortlessly by train !</h1>
+        <h3 class="littlewhite">
+          Compare, book and enjoy cheap prices for train tickets: your journey
+          starts on Tickethack.
+        </h3>
+        <img class="background" src="images/????.png" />
+      </div>
+
+      <div id="content-left">
+        <div id="add-section">
+          <input type="text" id="departure" placeholder="Departure" required />
+          <input type="text" id="arrival" placeholder="Arrival" required />
+          <input type="date" id="dateSelection" name="dateSelection" required />
+          <!--calendrier en attendant mieux-->
+          <button type="button" id="btn-search">Search</button>
+        </div>
+      </div>
+
+      <div id="content-right">
+        <div id="result-section">
+          <div id="trips-list"></div>
+          <img class="train" src="images???.jpg" />
+        </div>
+        <div id="text-result">
+          <p>It's time to book your future trip.</p>
+        </div>
+        <div id="text-noresult">
+          <p>No trip found.</p>
+          <img class="glass" src="images???.jpg" />
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

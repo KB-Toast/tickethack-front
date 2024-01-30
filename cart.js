@@ -8,6 +8,8 @@ const newCart = {
 function removeTrip() {
   this.parentElement.remove();
   console.log(this);
+  // fetch delete from cart
+  // update total cost
 }
 
 function listenRemoveButtons(buttons) {

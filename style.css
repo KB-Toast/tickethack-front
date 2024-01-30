@@ -326,6 +326,7 @@ body.body-cart {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 16px 0;
 }
 
 .cart {
@@ -355,6 +356,20 @@ h3.single-trip-title {
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
+}
+@media (max-width: 800px) {
+  .single-trip {
+    flex-direction: column;
+  }
+
+  .travel-trip, .hour-trip, .price-trip {
+    padding: 8px 0;
+  }
+
+  .remove-trip {
+    margin: 8px 0;
+  }
+
 }
 
 button.remove-trip {

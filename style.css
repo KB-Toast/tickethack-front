@@ -128,17 +128,16 @@ table {
 /* END RESET CSS */
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* ajouter background-image */
+  background-image: url(images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-#container {
-  display: grid;
-  grid-template-rows: repeat(8, 1fr);
-  grid-template-columns: repeat(8, 1fr);
-}
+/* HEADER */
 
 #header {
   grid-column-start: 1;
@@ -147,6 +146,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: white;
+  min-height: 48px;
 }
 
 #tickethack {
@@ -154,9 +154,11 @@ body {
 }
 
 .tickethack-link {
-  color: #5da184;
+  color: #66a691;
   font-size: 17px;
   font-weight: bold;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 
 #bookings {
@@ -164,73 +166,102 @@ body {
 }
 
 .bookings-link {
-  color: black;
+  color: #080808;
   font-size: 14px;
+  text-decoration: none;
+  padding: 8px 16px;
 }
 
-#main {
-  background-image: url("../tickethack-front/images/background.jpg");
 
-  grid-row-start: 2;
-  grid-row-end: 9;
-  grid-column-start: 1;
-  grid-column-end: 9;
-}
+/* MAIN CONTENT */
 
 .bigwhite {
   color: white;
   text-align: center;
+  font-size: 32px;
+  width: 90%;
+  margin: 32px auto 16px;
 }
 
 .littlewhite {
-  background;  color: white;
-    text-align: center;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 90%;
+  margin: 0 auto 32px;
 }
 
 #content-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  width: 60%;
+  width: 90%;
   margin: auto;
 }
+
+@media (max-width: 800px) {
+  #content-container {
+    flex-direction: column;
+  }
+
+  #content-left {
+    margin-bottom: 32px;
+  }
+
+  #content-right {
+    margin-bottom: 32px;
+  }
+}
+
+/* LEFT PART */
 
 #content-left {
   background-color: white;
   padding: 16px;
   border-radius: 8px;
+  min-width: 320px;
+  min-height: 360px;
+  position: relative;
 }
 
 #add-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+input {
+  background-color: #f2f3f3;
 }
 
 #departure {
   padding: 10px;
-  font-size: 15px;
-  text-align: center;
+  font-size: 16px;
   border-radius: 5px;
   border: none;
-  margin-bottom: 8px;
+  color: #525453;
+}
+
+hr {
+  border: 1px solid #b4b5b5;
+  width: 98%;
+  margin: 1px auto;
 }
 
 #arrival {
   padding: 10px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   border-radius: 5px;
   border: none;
-  font-size: 15px;
-  text-align: center;
+  font-size: 16px;
+  color: #525453;
 }
 
 #dateSelection {
   padding: 10px;
-  margin-bottom: 60px;
   font-size: 16px;
-  text-align: center;
+  border-radius: 5px;
+  border: none;
+  color: #525453;
 }
 
 #btn-search {
@@ -238,28 +269,147 @@ body {
   font-size: 15px;
   text-align: center;
   border-radius: 5px;
-  background-color: #5da184;
+  background-color: #66a691;
   color: white;
   border: none;
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translate(-50%);
+  width: calc(100% - 32px);
 }
+
+/* RIGHT PART */
 
 #content-right {
   background-color: white;
   padding: 16px;
   border-radius: 8px;
-  /*
-  grid-row-start: 4;
-  grid-row-end: 8;
-  grid-column-start: 6;
-  grid-column-end: 8;*/
-}
-
-#result-section {
+  min-width: 320px;
+  min-height: 360px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
+#right-img-container {
+  width: 120px;
+  margin: 0 auto;
+}
+
+#img-train {
+  width: 100%;
+}
+
+#content-right > hr {
+  margin: 32px auto;
+  border: 1px solid #66a692;
+  width: 75%;
+}
+
 #text-result {
+  text-align: center;
+}
+
+
+
+/* PAGE CART.HTML ET BOOKING.HTML*/
+
+body.body-cart {
+  background-image: none;
+  background-color: #f2f3f3;
+}
+
+.cart-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart {
+  background-color: #FFFFFF;
+  text-align: center;
+  width: 65%;
+  padding: 16px 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.cart p {
+  color: #080808;
+  padding: 16px 0;
+}
+
+h3.single-trip-title {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.single-trip {
+  padding: 16px;
+  background-color: #f6f1f0;
+  width: 90%;
+  margin: 16px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+button.remove-trip {
+  background-color: #66a692;
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+}
+
+.footer-cart {
+  background-color: #051544;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 65%;
+  margin: 0 auto;
+  padding: 24px 48px;
+  border-radius: 0 0 10px 10px;
+}
+
+.total-cart {
+  color: #ffffff;
+}
+
+button#purchaseCart {
+  background-color: #66a692;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+/* PAGE BOOKING.HTML */
+
+.footer-booking {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
+  margin: 0 auto;
+  padding: 24px 48px;
+  border-radius: 0 0 10px 10px;
+  color: #66a692;
+  text-align: center;
+}
+
+.footer-booking hr {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.footer-booking p {
+  margin-top: 8px;
+  padding: 16px 0;
 }

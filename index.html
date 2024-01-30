@@ -7,19 +7,17 @@
     <title>Tickethack</title>
   </head>
   <body>
-    <div id="container">
       <div id="header">
         <div id="tickethack">
-          <a href="#" class="tickethack-link">Tickethack</a>
+          <a href="index.html" class="tickethack-link">Tickethack</a>
         </div>
         <div id="bookings">
-          <a href="#" class="bookings-link">Cart</a>
-          <a href="#" class="bookings-link">Bookings</a>
+          <a href="cart.html" class="bookings-link">Cart</a>
+          <a href="booking.html" class="bookings-link">Bookings</a>
         </div>
       </div>
 
-      <div id="main">
-        <h1 class="bigwhite">Explore the world effortlessly by train !</h1>
+        <h1 class="bigwhite">Explore the world effortlessly by train!</h1>
         <h3 class="littlewhite">
           Compare, book and enjoy cheap prices for train tickets: your journey
           starts on Tickethack.
@@ -33,6 +31,7 @@
                 placeholder="Departure"
                 required
               />
+              <hr/>
               <input type="text" id="arrival" placeholder="Arrival" required />
               <input
                 type="date"
@@ -46,14 +45,14 @@
           </div>
 
           <div id="content-right">
-            <div id="result-section">
-              <div id="trips-list"></div>
+            <div id="right-img-container">
               <img
-                class="img"
-                src="../tickethack-front/images/train.png"
+                id="img-train"
+                src="images/train.png"
                 alt="image d'un train"
               />
             </div>
+            <hr/>
             <div id="text-result">
               <p>It's time to book your future trip.</p>
             </div>
@@ -67,8 +66,6 @@
             </div> !-->
           </div>
         </div>
-      </div>
-    </div>
 
     <script src="script.js"></script>
   </body>

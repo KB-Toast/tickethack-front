@@ -1,6 +1,6 @@
 body {
-  background-color: #ffffff;
-  margin: 0;
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 #container {
@@ -17,46 +17,149 @@ body {
   grid-column-start: 1;
   grid-column-end: 9;
   display: flex;
-  justify-content: space-around;
-  align-items: left;
-  border: 2px solid red;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
 }
 
-#cart {
-  text-align: right;
+.tickethack-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5da184;
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: bold;
 }
-
-#bookings {
-  text-align: right;
+.cart-link {
+  margin-left: auto;
+  margin-right: 10px;
+}
+.cart-link,
+.bookings-link {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  color: black;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 #back {
-  border: 2px solid black;
-}
-
-.bigwhite {
-  border: 2px solid green;
-}
-
-.littlewhite {
-  border: 2px solid yellow;
-}
-
-#content-left {
-  border: 2px solid violet;
+  background: pink;
   grid-row-start: 2;
-  grid-row-end: 8;
+  grid-row-end: 9;
   grid-column-start: 1;
-  grid-column-end: 5;
-}
-
-#content-right {
-  border: 2px solid pink;
-  grid-row-start: 2;
-  grid-row-end: 8;
-  grid-column-start: 5;
   grid-column-end: 9;
 }
 
+.bigwhite {
+  background: yellow;
+  align-items: center;
+  grid-row-start: 2;
+  grid-row-end: 9;
+  grid-column-start: 1;
+  grid-column-end: 9;
+  text-align: center;
+}
+
+.littlewhite {
+  background: violet;
+  grid-row-start: 2;
+  grid-row-end: 9;
+  grid-column-start: 1;
+  grid-column-end: 9;
+  text-align: center;
+}
+
+#content-left {
+  background-color: grey;
+  grid-row-start: 4;
+  grid-row-end: 8;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
 #add-section {
+  position: relative;
+  height: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#departure {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#arrival {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 5px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#btn-search {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 90px;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #5da184;
+  color: white;
+  border: none;
+  margin-bottom: 10px;
+}
+
+#dateSelection {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 80px;
+  margin-top: 50px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#content-right {
+  background-color: grey;
+  grid-row-start: 4;
+  grid-row-end: 8;
+  grid-column-start: 6;
+  grid-column-end: 8;
+}
+
+#result-section {
+  position: relative;
+  height: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#text-result {
 }

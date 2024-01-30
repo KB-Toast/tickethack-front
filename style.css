@@ -1,19 +1,69 @@
+/* RESET CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* END RESET CSS */
+
+
+
+
+
+body {
+  height: 100vh;
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* ajouter background-image */
 }
 
 #container {
-  height: 100vh;
-  width: 100vw;
   display: grid;
   grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(8, 1fr);
 }
 
 #header {
-  grid-row-start: 1;
-  grid-row-end: 2;
   grid-column-start: 1;
   grid-column-end: 9;
   display: flex;
@@ -22,31 +72,28 @@ body {
   background-color: white;
 }
 
-.tickethack-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #5da184;
-  font-size: 17px;
-  text-decoration: none;
-  font-weight: bold;
-}
-.cart-link {
-  margin-left: auto;
-  margin-right: 10px;
-}
-.cart-link,
-.bookings-link {
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  color: black;
-  font-size: 14px;
-  text-decoration: none;
+#tickethack {
+  margin-left: 32px;
 }
 
-#back {
+.tickethack-link {
+  color: #5da184;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#bookings {
+  margin-right: 32px;
+}
+
+.bookings-link {
+  color: black;
+  font-size: 14px;
+}
+
+#main {
   background: pink;
+  background-image: url('url de l\'image récupérée');
   grid-row-start: 2;
   grid-row-end: 9;
   grid-column-start: 1;
@@ -55,36 +102,29 @@ body {
 
 .bigwhite {
   background: yellow;
-  align-items: center;
-  grid-row-start: 2;
-  grid-row-end: 9;
-  grid-column-start: 1;
-  grid-column-end: 9;
   text-align: center;
 }
 
 .littlewhite {
   background: violet;
-  grid-row-start: 2;
-  grid-row-end: 9;
-  grid-column-start: 1;
-  grid-column-end: 9;
   text-align: center;
+}
+
+#content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin: auto;
 }
 
 #content-left {
   background-color: grey;
-  grid-row-start: 4;
-  grid-row-end: 8;
-  grid-column-start: 2;
-  grid-column-end: 4;
+  padding: 16px;
+  border-radius: 8px;
 }
 
 #add-section {
-  position: relative;
-  height: 100%;
-  max-width: 200px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,62 +132,47 @@ body {
 }
 
 #departure {
-  width: 100%;
-  max-width: 300px;
   padding: 10px;
-  margin-bottom: 10px;
   font-size: 15px;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: none;
+  margin-bottom: 8px;
 }
 
 #arrival {
-  width: 100%;
-  max-width: 300px;
   padding: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 32px;
+  border-radius: 5px;
+  border: none;
   font-size: 15px;
   text-align: center;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+}
+
+#dateSelection {
+  padding: 10px;
+  margin-bottom: 60px;
+  font-size: 16px;
+  text-align: center;
 }
 
 #btn-search {
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   padding: 10px 90px;
   font-size: 15px;
   text-align: center;
-  text-decoration: none;
   border-radius: 5px;
   background-color: #5da184;
   color: white;
   border: none;
-  margin-bottom: 10px;
-}
-
-#dateSelection {
-  width: 100%;
-  max-width: 300px;
-  padding: 10px;
-  margin-bottom: 80px;
-  margin-top: 50px;
-  font-size: 16px;
-  text-align: center;
-  border-radius: 5px;
-  border: 1px solid #ccc;
 }
 
 #content-right {
   background-color: grey;
+  /*
   grid-row-start: 4;
   grid-row-end: 8;
   grid-column-start: 6;
-  grid-column-end: 8;
+  grid-column-end: 8;*/
 }
 
 #result-section {

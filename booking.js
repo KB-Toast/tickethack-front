@@ -29,14 +29,50 @@ async function getSingleBookings(userBookings) {
     // Calcul nombre de minutes entre les deux dates (60000ms dans 1 minute)
     const mins = Math.floor(millisecHours / 60000);
 
-    // Résultat en additionnant tout
+    // Résultat en additionnant tout + gestion singulier/ pluriel
     let resultatDate = '';
-    console.log(hours / 60);
-    console.log(days);
-    if (days > 0) {
-      resultatDate = `Departure in ${days} days and ${hours} hours`;
+    if (days > 0 && days !== 1) {
+      if (hours > 0 && hours !== 1) {
+        resultatDate = `Departure in ${days} days and ${hours} hours`;
+      } else if (hours === 1) {
+        resultatDate = `Departure in ${days} days and ${hours} hour`;
+      } else {
+        resultatDate = `Departure in ${days} days and ${hours} hours`;
+      }
+    } else if (days === 1) {
+      if (hours > 0 && hours !== 1) {
+        resultatDate = `Departure in ${days} day and ${hours} hours`;
+      } else if (hours === 1) {
+        resultatDate = `Departure in ${days} day and ${hours} hour`;
+      } else {
+        resultatDate = `Departure in ${days} day and ${hours} hours`;
+      }
     } else {
-      resultatDate = `Departure in ${hours} hours and ${mins}mins`;
+      if (hours > 0 && hours !== 1) {
+        if (mins > 0 && mins !== 1) {
+          resultatDate = `Departure in ${hours} hours and ${mins}mins`;
+        } else if (mins === 1) {
+          resultatDate = `Departure in ${hours} hours and ${mins}min`;
+        } else {
+          resultatDate = `Departure in ${hours} hours and ${mins}mins`;
+        }
+      } else if (hours === 1) {
+        if (mins > 0 && mins !== 1) {
+          resultatDate = `Departure in ${hours} hour and ${mins}mins`;
+        } else if (mins === 1) {
+          resultatDate = `Departure in ${hours} hour and ${mins}min`;
+        } else {
+          resultatDate = `Departure in ${hours} hour and ${mins}mins`;
+        }
+      } else {
+        if (mins > 0 && mins !== 1) {
+          resultatDate = `Departure in ${hours} hours and ${mins}mins`;
+        } else if (mins === 1) {
+          resultatDate = `Departure in ${hours} hours and ${mins}min`;
+        } else {
+          resultatDate = `Departure in ${hours} hours and ${mins}mins`;
+        }
+      }
     }
 
     const parsedStringDate = Date.parse(allResultItems.trip.date);

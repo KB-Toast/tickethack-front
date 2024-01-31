@@ -9,7 +9,8 @@ async function bookTrip(button) {
     },
     body: JSON.stringify(tripId),
   });
-
+  button.style.backgroundColor = '#4da0df';
+  button.innerHTML = `<i class="fa-solid fa-check"></i>`;
   console.log('trip added to cart');
 }
 

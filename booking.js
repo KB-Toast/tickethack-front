@@ -1,13 +1,6 @@
 /* scripts for booking.html pages */
 
-// we can specify an userId to search for specific user carts, otherwise it defaults to "bob"
-const newBooking = {
-  userId: '65b8e837956a71c9cfa6d882',
-};
-
 async function getSingleBookings(userBookings) {
-  // var to store total cost of all trip, to be displayed after loop
-  let tripCost = 0;
   // loop on every element of data to get single trip details
   for (let userBooking of userBookings) {
     // new fetch for every  single trip found
@@ -15,19 +8,61 @@ async function getSingleBookings(userBookings) {
       `http://localhost:3000/trips/search/${userBooking.tripId}`
     );
     const allResultItems = await singleResult.json();
+
+    // formating Date
+    const initialDate = new Date();
+    const departureDate = new Date(allResultItems.trip.date).getTime();
+    const timeBetweenDates = departureDate - initialDate;
+
+    // Calcul nombre de jours avec le nb de millisecondes dans une journée
+    const days = Math.floor(timeBetweenDates / 86400000);
+
+    // Calcul reste en millisecondes entre les deux dates
+    const restMillisec = timeBetweenDates % 86400000;
+
+    // Calcul nombre d'heures entre les deux dates (3600000ms dans 1h)
+    const hours = Math.floor(restMillisec / 3600000);
+
+    // Calcul reste en millisecondes des heures
+    const millisecHours = restMillisec % 3600000;
+
+    // Calcul nombre de minutes entre les deux dates (60000ms dans 1 minute)
+    const mins = Math.floor(millisecHours / 60000);
+
+    // Résultat en additionnant tout
+    let resultatDate = '';
+    console.log(hours / 60);
+    console.log(days);
+    if (days > 0) {
+      resultatDate = `Departure in ${days} days and ${hours} hours`;
+    } else {
+      resultatDate = `Departure in ${hours} hours and ${mins}mins`;
+    }
+
+    const parsedStringDate = Date.parse(allResultItems.trip.date);
+    const stringToDate = new Date(parsedStringDate);
+    let hoursTrip = stringToDate.getHours();
+    if (hoursTrip < 10) {
+      hoursTrip = '0' + hoursTrip;
+    }
+    let minsTrip = stringToDate.getMinutes();
+    if (minsTrip < 10) {
+      minsTrip = '0' + minsTrip;
+    }
+
     let singleTrip = `
-        <div class="single-trip" id="${allResultItems.trip._id}">
+        <div class="single-trip-booking" id="${allResultItems.trip._id}">
           <div class="travel-trip">
               ${allResultItems.trip.departure} > ${allResultItems.trip.arrival}
           </div>
           <div class="hour-trip">
-              ${allResultItems.trip.date}
+              ${hoursTrip}:${minsTrip}
           </div>
           <div class="price-trip">
               ${allResultItems.trip.price}€
           </div>
           <div class="countdown-trip">
-              TODO
+              ${resultatDate}
           </div>
         </div>
         `;

@@ -172,6 +172,11 @@ body {
   padding: 8px 16px;
 }
 
+.bookings-link:hover {
+  color: #66a991;
+  background-color: #f2f3f3;
+}
+
 
 /* MAIN CONTENT */
 
@@ -220,7 +225,7 @@ body {
   padding: 16px;
   border-radius: 8px;
   min-width: 320px;
-  min-height: 360px;
+  height: 360px;
   position: relative;
 }
 
@@ -262,6 +267,15 @@ hr {
   border-radius: 5px;
   border: none;
   color: #525453;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 2px 2px 10px #080808;
 }
 
 #btn-search {
@@ -286,10 +300,11 @@ hr {
   padding: 16px;
   border-radius: 8px;
   min-width: 320px;
-  min-height: 360px;
+  height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: scroll;
 }
 
 #right-img-container {
@@ -307,8 +322,21 @@ hr {
   width: 75%;
 }
 
+#content-right > .single-trip {
+  width: 100%;
+  margin: 8px auto;
+}
+
 #text-result {
   text-align: center;
+}
+
+button.book-trip {
+  background-color: #66a692;
+  border: none;
+  color: #ffffff;
+  padding: 16px 8px;
+  border-radius: 5px;
 }
 
 
@@ -357,16 +385,48 @@ h3.single-trip-title {
   align-items: center;
   border-radius: 5px;
 }
+
+.single-trip-booking {
+  padding: 16px;
+  background-color: #f6f1f0;
+  width: 90%;
+  margin: 16px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.travel-trip {
+  min-width: 150px;
+  text-align: left;
+}
+
+.hour-trip, .price-trip {
+  min-width: 50px;
+}
+
 @media (max-width: 800px) {
   .single-trip {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 920px) {
+  .single-trip-booking {
     flex-direction: column;
   }
 
   .travel-trip, .hour-trip, .price-trip {
     padding: 8px 0;
+    text-align: center;
   }
 
   .remove-trip {
+    margin: 8px 0;
+  }
+
+  .countdown-trip {
     margin: 8px 0;
   }
 
@@ -405,6 +465,17 @@ button#purchaseCart {
 }
 
 /* PAGE BOOKING.HTML */
+
+.countdown-trip {
+  min-width: 240px;
+  text-align: left;
+}
+
+@media (max-width: 920px) {
+  .countdown-trip {
+    text-align: center;
+  }
+}
 
 .footer-booking {
   background-color: #ffffff;

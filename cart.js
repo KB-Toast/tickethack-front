@@ -1,10 +1,5 @@
 /* scripts for cart.html pages */
 
-// we can specify an userId to search for specific user carts, otherwise it defaults to "bob"
-const newCart = {
-  userId: '',
-};
-
 function removeTripFromDB(tripId) {
   const tripToRemove = {
     tripId,
@@ -25,7 +20,6 @@ function removeTripFromDB(tripId) {
 function removeTrip(button, tripCost) {
   // getting tripId to remove from db
   const tripId = button.parentElement.id;
-  console.log(tripId);
   // getting new total cost
   let stringCost = button.parentElement.querySelector('.price-trip').innerText;
   let numCost = parseInt(stringCost.slice(0, stringCost.length - 1));
@@ -52,6 +46,24 @@ function listenRemoveButtons(buttons, oldTripCost) {
   }
 }
 
+async function payCart() {
+  const tripsToPay = document.querySelectorAll('.single-trip');
+  for (let tripToPay of tripsToPay) {
+    let tripInfos = {
+      tripId: tripToPay.id,
+    };
+
+    await fetch('http://localhost:3000/carts/update', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tripInfos),
+    });
+  }
+  window.location.href = 'booking.html';
+}
+
 function updateFooterCart(tripCost) {
   let footerCart = `
                     <div class="footer-cart">
@@ -64,6 +76,7 @@ function updateFooterCart(tripCost) {
                     </div>
                 `;
   document.querySelector('.cart-container').innerHTML += footerCart;
+  document.querySelector('#purchaseCart').addEventListener('click', payCart);
 }
 
 async function getSingleCarts(userCarts) {
@@ -76,6 +89,19 @@ async function getSingleCarts(userCarts) {
       `http://localhost:3000/trips/search/${userCart.tripId}`
     );
     const allResultItems = await singleResult.json();
+
+    // formating date for display
+    const parsedStringDate = Date.parse(allResultItems.trip.date);
+    const stringToDate = new Date(parsedStringDate);
+    let hoursTrip = stringToDate.getHours();
+    if (hoursTrip < 10) {
+      hoursTrip = '0' + hoursTrip;
+    }
+    let minsTrip = stringToDate.getMinutes();
+    if (minsTrip < 10) {
+      minsTrip = '0' + minsTrip;
+    }
+    // keeping track of total cost
     tripCost += allResultItems.trip.price;
     let singleTrip = `
         <div class="single-trip" id="${allResultItems.trip._id}">
@@ -83,7 +109,7 @@ async function getSingleCarts(userCarts) {
               ${allResultItems.trip.departure} > ${allResultItems.trip.arrival}
           </div>
           <div class="hour-trip">
-              ${allResultItems.trip.date}
+          ${hoursTrip}:${minsTrip}
           </div>
           <div class="price-trip">
               ${allResultItems.trip.price}€

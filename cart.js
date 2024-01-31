@@ -5,16 +5,50 @@ const newCart = {
   userId: '',
 };
 
-function removeTrip() {
-  this.parentElement.remove();
-  console.log(this);
-  // fetch delete from cart
-  // update total cost
+function removeTripFromDB(tripId) {
+  const tripToRemove = {
+    tripId,
+  };
+  fetch('http://localhost:3000/carts/delete', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(tripToRemove),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('trip removed');
+    });
 }
 
-function listenRemoveButtons(buttons) {
+function removeTrip(button, tripCost) {
+  // getting tripId to remove from db
+  const tripId = button.parentElement.id;
+  console.log(tripId);
+  // getting new total cost
+  let stringCost = button.parentElement.querySelector('.price-trip').innerText;
+  let numCost = parseInt(stringCost.slice(0, stringCost.length - 1));
+  tripCost -= numCost;
+  // update Total with new cost
+  document.querySelector('.total-cart').innerHTML = `Total: ${tripCost} €`;
+
+  // removing trip from cart UI
+  button.parentElement.remove();
+
+  // adding new eventListeners because new dom (?)
+  const allRemoveButtons = document.querySelectorAll('.remove-trip');
+  listenRemoveButtons(allRemoveButtons, tripCost);
+
+  // delete by id from cart
+  removeTripFromDB(tripId);
+}
+
+function listenRemoveButtons(buttons, oldTripCost) {
   for (let button of buttons) {
-    button.addEventListener('click', removeTrip);
+    button.addEventListener('click', () => {
+      removeTrip(button, oldTripCost);
+    });
   }
 }
 
@@ -42,7 +76,6 @@ async function getSingleCarts(userCarts) {
       `http://localhost:3000/trips/search/${userCart.tripId}`
     );
     const allResultItems = await singleResult.json();
-    console.log('result: ', allResultItems.trip);
     tripCost += allResultItems.trip.price;
     let singleTrip = `
         <div class="single-trip" id="${allResultItems.trip._id}">
@@ -67,88 +100,23 @@ async function getSingleCarts(userCarts) {
 }
 
 async function getCart() {
-  const getAllCartItems = await fetch('http://localhost:3000/carts/getCart', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newCart),
-  });
+  const getAllCartItems = await fetch('http://localhost:3000/carts/getCart');
 
   const allCartItems = await getAllCartItems.json();
-  //console.log(allCartItems);
 
-  if (allCartItems.userCarts) {
+  if (allCartItems.userCarts.length !== 0) {
     document.querySelector(
       '.cart'
     ).innerHTML = `<h3 class="single-trip-title"> My cart </h3>`;
 
     const totalTripCost = await getSingleCarts(allCartItems.userCarts);
-    console.log('total: ', totalTripCost);
 
     updateFooterCart(totalTripCost);
     const allRemoveButtons = document.querySelectorAll('.remove-trip');
-    listenRemoveButtons(allRemoveButtons);
+    listenRemoveButtons(allRemoveButtons, totalTripCost);
   } else {
-    console.log('smth went wrong');
+    console.log('Nothing in cart');
   }
-
-  /*
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        document.querySelector(
-          '.cart'
-        ).innerHTML = `<h3 class="single-trip-title"> My cart </h3>`;
-
-        // loop on every element of data to get single trip details
-        for (let userCart of data.userCarts) {
-          // new fetch for every  single trip found
-          fetch(`http://localhost:3000/trips/search/${userCart.tripId}`)
-            .then((response) => response.json())
-            .then((trip) => {
-              console.log(trip);
-              let singleTrip = `
-              <div class="single-trip" id="${trip.trip._id}">
-                <div class="travel-trip">
-                    ${trip.trip.departure} > ${trip.trip.arrival}
-                </div>
-                <div class="hour-trip">
-                    ${trip.trip.date}
-                </div>
-                <div class="price-trip">
-                    ${trip.trip.price}€
-                </div>
-                <button class="remove-trip">
-                    X
-                </button>
-              </div>
-              `;
-
-              document.querySelector('.cart').innerHTML += singleTrip;
-
-              //console.log('Single trip: ', trip);
-            });
-        }
-
-        let footerCart = `
-                    <div class="footer-cart">
-                        <div class="total-cart">
-                            Total: TODO€
-                        </div>
-                        <div class="button-cart">
-                            <button id="purchaseCart"> Purchase </button>
-                        </div>
-                    </div>
-                `;
-        document.querySelector('.cart-container').innerHTML += footerCart;
-      } else {
-        console.log('no trip found');
-      }
-    });
-  // NOT WORKING, HELP RAIDA PLL :'(
-  console.log(document.querySelectorAll('.single-trip'));
-  */
 }
 
 // initial call to fetch carts, if any

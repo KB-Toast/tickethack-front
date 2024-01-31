@@ -5,7 +5,7 @@ async function getSingleBookings(userBookings) {
   for (let userBooking of userBookings) {
     // new fetch for every  single trip found
     const singleResult = await fetch(
-      `http://localhost:3000/trips/search/${userBooking.tripId}`
+      `https://tickethack-six.vercel.app/trips/search/${userBooking.tripId}`
     );
     const allResultItems = await singleResult.json();
 
@@ -109,7 +109,7 @@ async function getSingleBookings(userBookings) {
 
 async function getBooking() {
   const getAllBookingItems = await fetch(
-    'http://localhost:3000/carts/getBooking'
+    'https://tickethack-six.vercel.app/carts/getBooking'
   );
 
   const allBookingItems = await getAllBookingItems.json();

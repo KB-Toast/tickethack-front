@@ -4,7 +4,7 @@ function removeTripFromDB(tripId) {
   const tripToRemove = {
     tripId,
   };
-  fetch('http://localhost:3000/carts/delete', {
+  fetch('https://tickethack-six.vercel.app/carts/delete', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ async function payCart() {
       tripId: tripToPay.id,
     };
 
-    await fetch('http://localhost:3000/carts/update', {
+    await fetch('https://tickethack-six.vercel.app/carts/update', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ async function getSingleCarts(userCarts) {
   for (let userCart of userCarts) {
     // new fetch for every  single trip found
     const singleResult = await fetch(
-      `http://localhost:3000/trips/search/${userCart.tripId}`
+      `https://tickethack-six.vercel.app/trips/search/${userCart.tripId}`
     );
     const allResultItems = await singleResult.json();
 
@@ -126,7 +126,9 @@ async function getSingleCarts(userCarts) {
 }
 
 async function getCart() {
-  const getAllCartItems = await fetch('http://localhost:3000/carts/getCart');
+  const getAllCartItems = await fetch(
+    'https://tickethack-six.vercel.app/carts/getCart'
+  );
 
   const allCartItems = await getAllCartItems.json();
 

@@ -2,7 +2,7 @@ async function bookTrip(button) {
   const tripId = {
     tripId: button.parentElement.id,
   };
-  await fetch('http://localhost:3000/carts/new', {
+  await fetch('https://tickethack-six.vercel.app/carts/new', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ async function getSingleTrip(trips) {
   for (let trip of trips) {
     // new fetch for every  single trip found
     const singleResult = await fetch(
-      `http://localhost:3000/trips/search/${trip._id}`
+      `https://tickethack-six.vercel.app/trips/search/${trip._id}`
     );
     const allResultItems = await singleResult.json();
     const parsedStringDate = Date.parse(allResultItems.trip.date);
@@ -76,13 +76,16 @@ async function searchTrip() {
 
     //console.log(userInfos);
 
-    const AllResults = await fetch('http://localhost:3000/trips/search', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfos),
-    });
+    const AllResults = await fetch(
+      'https://tickethack-six.vercel.app/trips/search',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfos),
+      }
+    );
 
     const allResultItems = await AllResults.json();
     if (allResultItems.trips.length === 0) {
